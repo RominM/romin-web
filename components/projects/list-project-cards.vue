@@ -6,7 +6,7 @@
         :id="project.id"
         :is-hovered="hoveredIndex === index"
         @hover="whileHovering(index, project.id)"
-        @leave="hoveredIndex = null"
+        @leave="onLeave"
         @click="emit('open-modal', project.id)"
       />
     </li>
@@ -14,21 +14,33 @@
 </template>
 
 <script setup lang="ts">
-import type { TProject } from '~/types/type/project';
+import type { TProject } from "~/types/type/project";
 
-const emit = defineEmits(['focused-project', 'open-modal'])
+const emit = defineEmits(["focused-project", "open-modal"]);
 
 defineProps({
-  projects: { type: Array as PropType<TProject[]>, required: true }
-})
+  projects: { type: Array as PropType<TProject[]>, required: true },
+});
 
-const hoveredIndex = ref<number | null>(null)
+const hoveredIndex = ref<number | null>(null);
+let hoverTimeout: ReturnType<typeof setTimeout> | null = null;
 
 function whileHovering(index: number, projectId: string) {
-  setTimeout(() => {
-    hoveredIndex.value = index
-    emit('focused-project', projectId)
-  }, 50)
+  if (hoverTimeout) clearTimeout(hoverTimeout);
+
+  hoverTimeout = setTimeout(() => {
+    hoveredIndex.value = index;
+    emit("focused-project", projectId);
+    hoverTimeout = null;
+  }, 300);
+}
+
+function onLeave() {
+  if (hoverTimeout) {
+    clearTimeout(hoverTimeout);
+    hoverTimeout = null;
+  }
+  hoveredIndex.value = null;
 }
 </script>
 
@@ -36,5 +48,6 @@ function whileHovering(index: number, projectId: string) {
 .list-project-cards {
   display: flex;
   width: 100%;
+  overflow: visible;
 }
 </style>

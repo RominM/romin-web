@@ -1,4 +1,3 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-05-15',
   devtools: { enabled: true },
@@ -19,6 +18,10 @@ export default defineNuxtConfig({
   },
   modules: ['@pinia/nuxt'],
   components: [
-    { path: '~/components', pathPrefix: false } 
-  ]
+    { path: '~/components', pathPrefix: false }
+  ],
+
+  runtimeConfig: {
+    tmdbToken: process.env.TMDB_TOKEN,
+  }
 })
