@@ -44,20 +44,28 @@ import Footer from '../components/Footer.astro'
     .querySelectorAll('.reveal, .reveal-left, .reveal-right')
     .forEach(el => revealObserver.observe(el))
 
-  // Sticky CTA — apparaît quand le bouton Hero sort du viewport
-  const heroCta   = document.getElementById('hero-cta')
-  const stickyCta = document.getElementById('sticky-cta')
+  // Sticky CTA — apparaît quand hero CTA sort du viewport, disparaît dans #contact
+  const heroCta    = document.getElementById('hero-cta')
+  const contactSec = document.getElementById('contact')
+  const stickyCta  = document.getElementById('sticky-cta')
 
   if (heroCta && stickyCta) {
-    const ctaObserver = new IntersectionObserver(
-      ([entry]) => {
-        const visible = !entry.isIntersecting
-        stickyCta.classList.toggle('is-visible', visible)
-        stickyCta.setAttribute('aria-hidden', String(!visible))
-      },
-      { threshold: 0 }
-    )
-    ctaObserver.observe(heroCta)
+    let heroGone    = false
+    let contactVisible = false
+
+    const update = () => {
+      const show = heroGone && !contactVisible
+      stickyCta.classList.toggle('is-visible', show)
+      stickyCta.setAttribute('aria-hidden', String(!show))
+    }
+
+    new IntersectionObserver(([e]) => { heroGone = !e.isIntersecting; update() }, { threshold: 0 })
+      .observe(heroCta)
+
+    if (contactSec) {
+      new IntersectionObserver(([e]) => { contactVisible = e.isIntersecting; update() }, { threshold: 0.1 })
+        .observe(contactSec)
+    }
   }
 </script>
 
