@@ -1,0 +1,73 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<Layout
+  title="Merci pour votre message — Romin"
+  description="Votre demande a bien été reçue. Je vous réponds sous 24h."
+>
+  <Header />
+  <main class="merci">
+    <div class="container merci__inner">
+      <div class="merci__icon">🎉</div>
+      <h1 class="merci__title">Message bien reçu !</h1>
+      <p class="merci__desc">
+        Merci pour votre demande. Je reviens vers vous <strong>sous 24h</strong>
+        avec un premier retour sur votre projet.
+      </p>
+      <p class="merci__sub">
+        En attendant, n'hésitez pas à vérifier vos spams si vous ne recevez pas de réponse.
+      </p>
+      <a href="/" class="btn btn--primary">Retour à l'accueil</a>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style lang="scss">
+  @use '../styles/foundations' as *;
+
+  .merci {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    padding-top: 60px;
+
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 1.25rem;
+      padding-block: $section-padding;
+      max-width: 520px;
+      margin-inline: auto;
+      animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both;
+    }
+
+    &__icon {
+      font-size: 3.5rem;
+      line-height: 1;
+    }
+
+    &__title {
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      color: $color-text;
+    }
+
+    &__desc {
+      font-size: 1.05rem;
+      color: $color-text-muted;
+      line-height: 1.75;
+
+      strong { color: $color-accent; font-weight: 600; }
+    }
+
+    &__sub {
+      font-size: 0.85rem;
+      color: $color-text-subtle;
+    }
+  }
+</style>
