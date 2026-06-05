@@ -23,12 +23,17 @@ const {
     <title>{title}</title>
   </head>
   <body>
+    <!-- Spots de couleur animés — z-index 0, fixed, clippé -->
     <div class="bg" aria-hidden="true">
       <div class="bg__spot bg__spot--1"></div>
       <div class="bg__spot bg__spot--2"></div>
       <div class="bg__spot bg__spot--3"></div>
     </div>
-    <slot />
+
+    <!-- Contenu de la page — z-index 1 -->
+    <div class="page">
+      <slot />
+    </div>
   </body>
 </html>
 
@@ -36,12 +41,13 @@ const {
   @use '../styles/global.scss';
   @use '../styles/foundations/variables' as *;
 
+  /* ---- Background spots ---- */
   .bg {
     position: fixed;
     inset: 0;
+    overflow: hidden;
     pointer-events: none;
     z-index: 0;
-    overflow: hidden;
   }
 
   .bg__spot {
@@ -49,53 +55,55 @@ const {
     border-radius: 50%;
 
     &--1 {
-      width: 900px;
-      height: 900px;
-      background: radial-gradient(circle at center, rgba(123, 105, 248, 0.22) 0%, transparent 65%);
-      top: -350px;
-      right: -250px;
+      width: 800px;
+      height: 800px;
+      background: radial-gradient(circle at center, rgba(123, 105, 248, 0.2) 0%, transparent 65%);
+      top: -300px;
+      right: -200px;
       animation: spot-drift-1 22s ease-in-out infinite;
     }
 
     &--2 {
-      width: 750px;
-      height: 750px;
-      background: radial-gradient(circle at center, rgba(248, 124, 109, 0.18) 0%, transparent 65%);
-      bottom: -250px;
-      left: -200px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle at center, rgba(248, 124, 109, 0.16) 0%, transparent 65%);
+      bottom: -200px;
+      left: -180px;
       animation: spot-drift-2 28s ease-in-out infinite;
     }
 
     &--3 {
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle at center, rgba(183, 168, 252, 0.16) 0%, transparent 65%);
-      top: 45%;
-      right: 5%;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle at center, rgba(183, 168, 252, 0.14) 0%, transparent 65%);
+      top: 40%;
+      right: 8%;
       animation: spot-drift-3 35s ease-in-out infinite;
     }
   }
 
   @keyframes spot-drift-1 {
     0%, 100% { transform: translate(0, 0); }
-    33%       { transform: translate(-70px, 80px); }
-    66%       { transform: translate(50px, -50px); }
+    33%       { transform: translate(-60px, 70px); }
+    66%       { transform: translate(40px, -40px); }
   }
 
   @keyframes spot-drift-2 {
     0%, 100% { transform: translate(0, 0); }
-    33%       { transform: translate(90px, -70px); }
-    66%       { transform: translate(-50px, 50px); }
+    33%       { transform: translate(80px, -60px); }
+    66%       { transform: translate(-40px, 40px); }
   }
 
   @keyframes spot-drift-3 {
     0%, 100% { transform: translate(0, 0); }
-    33%       { transform: translate(-50px, 70px); }
-    66%       { transform: translate(70px, -50px); }
+    33%       { transform: translate(-40px, 60px); }
+    66%       { transform: translate(60px, -40px); }
   }
 
-  body > *:not(.bg) {
+  /* ---- Page wrapper ---- */
+  .page {
     position: relative;
     z-index: 1;
+    isolation: isolate; // crée un stacking context propre sans interférer avec position:fixed
   }
 </style>
