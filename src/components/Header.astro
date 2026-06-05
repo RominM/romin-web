@@ -7,17 +7,53 @@ const navLinks = [
 ]
 ---
 
-<header class="header">
+<header class="header" id="header">
   <div class="container header__inner">
     <a href="/" class="header__logo">romin<span>.</span>dev</a>
-    <nav class="header__nav">
+
+    <nav class="header__nav" id="desktop-nav">
       {navLinks.map(link => (
         <a href={link.href} class="header__link">{link.label}</a>
       ))}
     </nav>
+
     <a href="#contact" class="btn btn--primary header__cta">Devis gratuit</a>
+
+    <button class="header__burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="header__mobile" id="mobile-menu" aria-hidden="true">
+    <nav class="header__mobile-nav">
+      {navLinks.map(link => (
+        <a href={link.href} class="header__mobile-link">{link.label}</a>
+      ))}
+    </nav>
+    <a href="#contact" class="btn btn--primary header__mobile-cta">Demander un devis gratuit</a>
   </div>
 </header>
+
+<script>
+  const burger = document.getElementById('burger')!
+  const mobileMenu = document.getElementById('mobile-menu')!
+
+  burger.addEventListener('click', () => {
+    const isOpen = burger.classList.toggle('is-open')
+    mobileMenu.classList.toggle('is-open', isOpen)
+    burger.setAttribute('aria-expanded', String(isOpen))
+    mobileMenu.setAttribute('aria-hidden', String(!isOpen))
+  })
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      burger.classList.remove('is-open')
+      mobileMenu.classList.remove('is-open')
+      burger.setAttribute('aria-expanded', 'false')
+      mobileMenu.setAttribute('aria-hidden', 'true')
+    })
+  })
+</script>
 
 <style lang="scss">
   @use '../styles/foundations' as *;
@@ -26,9 +62,10 @@ const navLinks = [
     position: fixed;
     inset: 0 0 auto 0;
     z-index: 100;
-    background: rgba(253, 252, 251, 0.9);
-    backdrop-filter: blur(12px);
-    border-bottom: 1px solid $color-border;
+    background: rgba(253, 252, 251, 0.82);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.6);
 
     &__inner {
       @include flex-between;
@@ -48,9 +85,7 @@ const navLinks = [
       display: none;
       gap: 2.5rem;
 
-      @include respond-to('md') {
-        display: flex;
-      }
+      @include respond-to('md') { display: flex; }
     }
 
     &__link {
@@ -65,9 +100,82 @@ const navLinks = [
     &__cta {
       display: none;
 
-      @include respond-to('md') {
-        display: inline-flex;
+      @include respond-to('md') { display: inline-flex; }
+    }
+
+    // Hamburger button
+    &__burger {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: $radius-sm;
+      transition: background $transition;
+
+      @include respond-to('md') { display: none; }
+
+      &:hover { background: $color-accent-bg; }
+
+      span {
+        display: block;
+        height: 2px;
+        background: $color-text;
+        border-radius: 2px;
+        transform-origin: center;
+        transition: transform 0.3s ease, opacity 0.3s ease;
       }
+
+      &.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+      &.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+      &.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    }
+
+    // Mobile menu drawer
+    &__mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1), padding 0.3s ease;
+
+      &.is-open {
+        max-height: 400px;
+        padding: 1rem 1.5rem 1.5rem;
+        border-top: 1px solid $color-border;
+      }
+
+      @include respond-to('md') { display: none; }
+    }
+
+    &__mobile-nav {
+      display: flex;
+      flex-direction: column;
+    }
+
+    &__mobile-link {
+      font-size: 1rem;
+      font-weight: 500;
+      color: $color-text-muted;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid $color-border;
+      transition: color $transition;
+
+      &:last-child { border-bottom: none; }
+      &:hover { color: $color-accent; }
+    }
+
+    &__mobile-cta {
+      margin-top: 0.75rem;
+      text-align: center;
+      justify-content: center;
     }
   }
 </style>
