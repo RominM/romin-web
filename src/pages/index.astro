@@ -19,12 +19,12 @@ import Footer from '../components/Footer.astro'
     <Contact />
   </main>
   <Footer />
-</Layout>
 
-<!-- Sticky CTA mobile -->
-<div class="sticky-cta" id="sticky-cta" aria-hidden="true">
-  <a href="#contact" class="btn btn--primary sticky-cta__btn">Demander un devis gratuit</a>
-</div>
+  <!-- Sticky CTA mobile -->
+  <div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+    <a href="#contact" class="btn btn--primary sticky-cta__btn">Demander un devis gratuit</a>
+  </div>
+</Layout>
 
 <script>
   // Scroll reveal
@@ -44,8 +44,8 @@ import Footer from '../components/Footer.astro'
     .querySelectorAll('.reveal, .reveal-left, .reveal-right')
     .forEach(el => revealObserver.observe(el))
 
-  // Sticky CTA — appears when hero CTA scrolls out of view
-  const heroCta  = document.getElementById('hero-cta')
+  // Sticky CTA — apparaît quand le bouton Hero sort du viewport
+  const heroCta   = document.getElementById('hero-cta')
   const stickyCta = document.getElementById('sticky-cta')
 
   if (heroCta && stickyCta) {
