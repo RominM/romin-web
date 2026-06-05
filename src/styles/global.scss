@@ -23,12 +23,16 @@ h1, h2, h3, h4 {
 }
 
 .section-label {
+  display: inline-block;
   font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: $color-accent-light;
-  margin-bottom: 0.75rem;
+  color: $color-accent;
+  background: $color-accent-bg;
+  padding: 0.3rem 0.8rem;
+  border-radius: $radius-pill;
+  margin-bottom: 1rem;
 }
 
 .section-title {
@@ -41,15 +45,15 @@ h1, h2, h3, h4 {
   font-size: 1.05rem;
   color: $color-text-muted;
   max-width: 520px;
-  line-height: 1.7;
+  line-height: 1.75;
 }
 
 .btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  border-radius: $radius-sm;
+  padding: 0.8rem 1.6rem;
+  border-radius: $radius-pill;
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
@@ -59,21 +63,34 @@ h1, h2, h3, h4 {
   &--primary {
     background: $color-accent;
     color: #fff;
+    box-shadow: 0 4px 14px rgba(123, 105, 248, 0.35);
 
     &:hover {
-      background: color.adjust(#6c63ff, $lightness: -8%);
-      transform: translateY(-1px);
+      background: $color-accent-dark;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(123, 105, 248, 0.45);
     }
   }
 
   &--ghost {
     background: transparent;
-    color: $color-text;
-    border: 1px solid $color-border;
+    color: $color-text-muted;
+    border: 2px solid $color-border;
 
     &:hover {
-      border-color: $color-accent-light;
-      color: $color-accent-light;
+      border-color: $color-accent;
+      color: $color-accent;
+    }
+  }
+
+  &--coral {
+    background: $color-coral;
+    color: #fff;
+    box-shadow: 0 4px 14px rgba(248, 124, 109, 0.3);
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(248, 124, 109, 0.4);
     }
   }
 }

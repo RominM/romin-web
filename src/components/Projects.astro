@@ -1,57 +1,74 @@
 ---
 const projects = [
   {
-    title: 'Projet 1',
-    desc: 'Description courte du projet, technos utilisées, résultat concret.',
-    tags: ['Vue', 'Node.js', 'PostgreSQL'],
+    emoji: '✂️',
+    type: 'Salon de coiffure',
+    title: 'Atelier Fauve',
+    desc: 'Site vitrine avec prise de rendez-vous en ligne, galerie photos et présentation des prestations.',
+    tags: ['Site vitrine', 'Réservation', 'Mobile-first'],
     link: '#',
   },
   {
-    title: 'Projet 2',
-    desc: 'Description courte du projet, technos utilisées, résultat concret.',
-    tags: ['Nuxt', 'TypeScript', 'MongoDB'],
+    emoji: '🍕',
+    type: 'Restaurant',
+    title: 'La Braise',
+    desc: 'Menu digital, carte des vins, réservation de table et mise en avant des plats du jour.',
+    tags: ['Menu digital', 'Réservation', 'SEO local'],
     link: '#',
   },
   {
-    title: 'Projet 3',
-    desc: 'Description courte du projet, technos utilisées, résultat concret.',
-    tags: ['React', 'Next.js', 'Supabase'],
+    emoji: '🔧',
+    type: 'Artisan plombier',
+    title: 'Plomberie Durand',
+    desc: 'Site d\'urgence plomberie avec numéro d\'appel mis en avant, zone d\'intervention et formulaire de contact rapide.',
+    tags: ['Site vitrine', 'Google Business', 'Contact rapide'],
     link: '#',
   },
 ]
 ---
 
-<section id="projects" class="section">
+<section id="projects" class="section projects-section">
   <div class="container">
-    <p class="section-label">Portfolio</p>
-    <h2 class="section-title">Réalisations</h2>
+    <p class="section-label">Réalisations</p>
+    <h2 class="section-title">Des sites qui ressemblent à leurs propriétaires</h2>
     <p class="section-desc">
-      Quelques projets récents qui illustrent mon approche et mes compétences.
+      Chaque projet est unique, pensé pour le métier et les clients du commerçant.
     </p>
 
     <div class="projects-grid">
       {projects.map(p => (
-        <a href={p.link} class="project-card">
+        <article class="project-card">
+          <div class="project-card__cover">
+            <span class="project-card__emoji">{p.emoji}</span>
+            <span class="project-card__type">{p.type}</span>
+          </div>
           <div class="project-card__body">
             <h3 class="project-card__title">{p.title}</h3>
             <p class="project-card__desc">{p.desc}</p>
-          </div>
-          <footer class="project-card__footer">
             <div class="project-card__tags">
               {p.tags.map(tag => (
                 <span class="project-card__tag">{tag}</span>
               ))}
             </div>
-            <span class="project-card__arrow">→</span>
-          </footer>
-        </a>
+          </div>
+        </article>
       ))}
     </div>
+
+    <p class="projects-note">
+      Ces exemples illustrent le type de projets que je réalise.
+      <a href="#contact">Parlons du vôtre →</a>
+    </p>
   </div>
 </section>
 
 <style lang="scss">
+  @use 'sass:color';
   @use '../styles/foundations' as *;
+
+  .projects-section {
+    background: $color-bg-alt;
+  }
 
   .projects-grid {
     display: grid;
@@ -64,39 +81,58 @@ const projects = [
   }
 
   .project-card {
-    @include card;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    transition: border-color $transition, transform $transition;
+    background: $color-bg-card;
+    border-radius: $radius-md;
+    overflow: hidden;
+    box-shadow: $shadow-md;
+    transition: transform $transition, box-shadow $transition;
 
     &:hover {
-      border-color: rgba($color-accent, 0.4);
-      transform: translateY(-3px);
+      transform: translateY(-4px);
+      box-shadow: $shadow-lg;
+    }
 
-      .project-card__arrow { transform: translateX(4px); }
+    &__cover {
+      height: 130px;
+      background: linear-gradient(135deg, $color-accent-bg, color.adjust($color-coral-bg, $lightness: 2%));
+      @include flex-center;
+      flex-direction: column;
+      gap: 0.5rem;
+      position: relative;
+    }
+
+    &__emoji {
+      font-size: 2.5rem;
+      line-height: 1;
+    }
+
+    &__type {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: $color-accent;
+      background: $color-bg-card;
+      padding: 0.2rem 0.6rem;
+      border-radius: $radius-pill;
     }
 
     &__body {
+      padding: 1.5rem;
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-      flex: 1;
     }
 
     &__title {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       color: $color-text;
     }
 
     &__desc {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       color: $color-text-muted;
       line-height: 1.6;
-    }
-
-    &__footer {
-      @include flex-between;
     }
 
     &__tags {
@@ -106,18 +142,27 @@ const projects = [
     }
 
     &__tag {
-      font-size: 0.72rem;
-      font-family: $font-mono;
-      color: $color-accent-light;
-      background: rgba($color-accent, 0.1);
-      padding: 0.2rem 0.55rem;
-      border-radius: 4px;
+      font-size: 0.75rem;
+      color: $color-accent;
+      background: $color-accent-bg;
+      padding: 0.2rem 0.6rem;
+      border-radius: $radius-pill;
+      font-weight: 500;
     }
+  }
 
-    &__arrow {
-      color: $color-text-subtle;
-      transition: transform $transition;
-      font-size: 1.1rem;
+  .projects-note {
+    margin-top: 2.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: $color-text-subtle;
+
+    a {
+      color: $color-accent;
+      font-weight: 600;
+      transition: opacity $transition;
+
+      &:hover { opacity: 0.75; }
     }
   }
 </style>

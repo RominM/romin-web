@@ -1,42 +1,55 @@
 ---
 const services = [
   {
-    icon: '⚡',
-    title: 'Application web',
-    desc: 'Développement d\'applications sur-mesure, de l\'interface jusqu\'à l\'API. Architecture pensée pour durer.',
+    icon: '🌐',
+    color: 'violet',
+    title: 'Site vitrine professionnel',
+    desc: 'Un site clair, rapide et moderne qui présente votre activité, vos horaires, vos tarifs — et donne envie de vous contacter.',
+    items: ['Design sur-mesure', 'Adapté mobile & tablette', 'Hébergement inclus la 1ère année'],
   },
   {
-    icon: '🎨',
-    title: 'Site vitrine & landing page',
-    desc: 'Un site qui convertit : design soigné, performance optimale, SEO intégré dès le départ.',
+    icon: '📍',
+    color: 'coral',
+    title: 'Visibilité sur Google',
+    desc: 'Apparaissez quand un client cherche votre métier près de chez lui. Je configure votre fiche Google et optimise votre référencement local.',
+    items: ['Fiche Google Business', 'SEO local', 'Balises et mots-clés adaptés'],
   },
   {
-    icon: '🔌',
-    title: 'Intégration & API',
-    desc: 'Connexion à vos outils existants (CRM, paiement, auth, services tiers) de manière fiable et sécurisée.',
+    icon: '📅',
+    color: 'violet',
+    title: 'Réservation & contact',
+    desc: 'Formulaire de contact, prise de rendez-vous en ligne, menu digital, carte interactive — selon ce dont vous avez besoin.',
+    items: ['Formulaire de contact', 'Réservation en ligne', 'Menu / catalogue digital'],
   },
   {
-    icon: '🚀',
-    title: 'Audit & optimisation',
-    desc: 'Performance, accessibilité, qualité du code — je diagnostique et améliore vos projets existants.',
+    icon: '🔧',
+    color: 'coral',
+    title: 'Maintenance & suivi',
+    desc: 'Je m\'occupe des mises à jour, de la sécurité et des petites modifications. Vous gérez votre commerce, je gère votre site.',
+    items: ['Mises à jour régulières', 'Modifications incluses', 'Support réactif'],
   },
 ]
 ---
 
-<section id="services" class="section">
+<section id="services" class="section services-section">
   <div class="container">
-    <p class="section-label">Ce que je fais</p>
-    <h2 class="section-title">Mes prestations</h2>
+    <p class="section-label">Ce que je propose</p>
+    <h2 class="section-title">Tout ce qu'il faut pour exister en ligne</h2>
     <p class="section-desc">
-      Des solutions adaptées à vos besoins, livrées dans les délais et sans mauvaises surprises.
+      Des prestations simples, pensées pour les indépendants et commerçants — sans jargon, sans mauvaise surprise.
     </p>
 
     <div class="services-grid">
       {services.map(s => (
-        <article class="service-card">
+        <article class={`service-card service-card--${s.color}`}>
           <span class="service-card__icon">{s.icon}</span>
           <h3 class="service-card__title">{s.title}</h3>
           <p class="service-card__desc">{s.desc}</p>
+          <ul class="service-card__list">
+            {s.items.map(item => (
+              <li>{item}</li>
+            ))}
+          </ul>
         </article>
       ))}
     </div>
@@ -46,6 +59,10 @@ const services = [
 <style lang="scss">
   @use '../styles/foundations' as *;
 
+  .services-section {
+    background: $color-bg-alt;
+  }
+
   .services-grid {
     display: grid;
     gap: 1.5rem;
@@ -54,10 +71,6 @@ const services = [
     @include respond-to('md') {
       grid-template-columns: repeat(2, 1fr);
     }
-
-    @include respond-to('lg') {
-      grid-template-columns: repeat(4, 1fr);
-    }
   }
 
   .service-card {
@@ -65,20 +78,26 @@ const services = [
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    transition: border-color $transition, transform $transition;
+    transition: transform $transition, box-shadow $transition;
 
     &:hover {
-      border-color: rgba($color-accent, 0.4);
-      transform: translateY(-3px);
+      transform: translateY(-4px);
+      box-shadow: $shadow-lg;
     }
 
+    &--violet .service-card__icon { background: $color-accent-bg; }
+    &--coral  .service-card__icon { background: $color-coral-bg; }
+
     &__icon {
-      font-size: 1.75rem;
-      line-height: 1;
+      width: 52px;
+      height: 52px;
+      border-radius: $radius-sm;
+      @include flex-center;
+      font-size: 1.5rem;
     }
 
     &__title {
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       color: $color-text;
     }
 
@@ -87,6 +106,29 @@ const services = [
       color: $color-text-muted;
       line-height: 1.65;
       flex: 1;
+    }
+
+    &__list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      padding-top: 0.5rem;
+      border-top: 1px solid $color-border;
+
+      li {
+        font-size: 0.82rem;
+        color: $color-text-muted;
+        padding-left: 1.1rem;
+        position: relative;
+
+        &::before {
+          content: '✓';
+          position: absolute;
+          left: 0;
+          color: $color-accent;
+          font-weight: 700;
+        }
+      }
     }
   }
 </style>

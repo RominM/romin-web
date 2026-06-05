@@ -1,27 +1,37 @@
-// Colors
-$color-bg: #0a0a0f;
-$color-bg-card: #13131a;
-$color-border: #1e1e2e;
+// Colors - Light pastel theme
+$color-bg:          #fdfcfb;
+$color-bg-alt:      #f7f4ff;
+$color-bg-card:     #ffffff;
+$color-border:      #ece6f8;
 
-$color-accent: #6c63ff;
-$color-accent-light: #a29bfe;
+$color-accent:      #7b69f8;
+$color-accent-dark: #6355e0;
+$color-accent-bg:   #f0ecff;
 
-$color-text: #e2e8f0;
-$color-text-muted: #94a3b8;
-$color-text-subtle: #475569;
+$color-coral:       #f87c6d;
+$color-coral-bg:    #fff2f0;
+
+$color-text:        #1c1729;
+$color-text-muted:  #6b5f7a;
+$color-text-subtle: #a89ab8;
+
+// Shadows
+$shadow-sm: 0 1px 4px rgba(120, 100, 180, 0.08);
+$shadow-md: 0 4px 16px rgba(120, 100, 180, 0.12);
+$shadow-lg: 0 8px 32px rgba(120, 100, 180, 0.16);
 
 // Typography
 $font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-$font-mono: 'JetBrains Mono', 'Fira Code', monospace;
 
 // Spacing
-$section-padding: clamp(4rem, 10vw, 8rem);
-$container-max: 1100px;
+$section-padding:  clamp(4rem, 10vw, 7rem);
+$container-max:    1100px;
 
 // Border radius
-$radius-sm: 8px;
-$radius-md: 16px;
-$radius-lg: 24px;
+$radius-sm:  10px;
+$radius-md:  18px;
+$radius-lg:  28px;
+$radius-pill: 100px;
 
 // Transitions
 $transition: 0.2s ease;

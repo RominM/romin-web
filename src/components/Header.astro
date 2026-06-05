@@ -1,8 +1,8 @@
 ---
 const navLinks = [
-  { label: 'Services', href: '#services' },
-  { label: 'Stack', href: '#stack' },
-  { label: 'Projets', href: '#projects' },
+  { label: 'Prestations', href: '#services' },
+  { label: 'Pourquoi moi', href: '#why' },
+  { label: 'Réalisations', href: '#projects' },
   { label: 'Contact', href: '#contact' },
 ]
 ---
@@ -15,7 +15,7 @@ const navLinks = [
         <a href={link.href} class="header__link">{link.label}</a>
       ))}
     </nav>
-    <a href="#contact" class="btn btn--primary header__cta">Me contacter</a>
+    <a href="#contact" class="btn btn--primary header__cta">Devis gratuit</a>
   </div>
 </header>
 
@@ -26,27 +26,27 @@ const navLinks = [
     position: fixed;
     inset: 0 0 auto 0;
     z-index: 100;
+    background: rgba(253, 252, 251, 0.9);
     backdrop-filter: blur(12px);
-    background: rgba($color-bg, 0.8);
     border-bottom: 1px solid $color-border;
 
     &__inner {
       @include flex-between;
-      height: 64px;
+      height: 68px;
     }
 
     &__logo {
-      font-family: $font-mono;
-      font-size: 1.1rem;
-      font-weight: 500;
+      font-size: 1.15rem;
+      font-weight: 700;
       color: $color-text;
+      letter-spacing: -0.02em;
 
       span { color: $color-accent; }
     }
 
     &__nav {
       display: none;
-      gap: 2rem;
+      gap: 2.5rem;
 
       @include respond-to('md') {
         display: flex;
@@ -55,10 +55,11 @@ const navLinks = [
 
     &__link {
       font-size: 0.9rem;
+      font-weight: 500;
       color: $color-text-muted;
       transition: color $transition;
 
-      &:hover { color: $color-text; }
+      &:hover { color: $color-accent; }
     }
 
     &__cta {

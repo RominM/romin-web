@@ -3,18 +3,41 @@
 
 <section class="hero section">
   <div class="container hero__inner">
-    <div class="hero__badge">Disponible pour de nouveaux projets</div>
+    <div class="hero__badge">
+      <span class="hero__badge-dot"></span>
+      Disponible pour de nouveaux projets
+    </div>
+
     <h1 class="hero__title">
-      Développeur web <br />
-      <span class="hero__title--accent">full-stack</span> freelance
+      Votre entreprise mérite<br />
+      un site qui <span class="hero__title--accent">travaille pour vous</span>
     </h1>
+
     <p class="hero__desc">
-      Je transforme vos idées en applications web modernes, rapides et sur-mesure.
-      Du MVP au produit complet, je vous accompagne de A à Z.
+      Je crée des sites web sur-mesure pour les artisans, commerçants et indépendants locaux.
+      Simple, rapide à mettre en ligne, et pensé pour ramener des clients.
     </p>
+
     <div class="hero__actions">
-      <a href="#contact" class="btn btn--primary">Démarrer un projet</a>
-      <a href="#projects" class="btn btn--ghost">Voir mes réalisations</a>
+      <a href="#contact" class="btn btn--primary">Demander un devis gratuit</a>
+      <a href="#projects" class="btn btn--ghost">Voir des exemples</a>
+    </div>
+
+    <div class="hero__social-proof">
+      <div class="hero__sp-item">
+        <strong>2–4 semaines</strong>
+        <span>pour mettre en ligne</span>
+      </div>
+      <div class="hero__sp-divider"></div>
+      <div class="hero__sp-item">
+        <strong>100 %</strong>
+        <span>sur-mesure</span>
+      </div>
+      <div class="hero__sp-divider"></div>
+      <div class="hero__sp-item">
+        <strong>Devis</strong>
+        <span>gratuit & sans engagement</span>
+      </div>
     </div>
   </div>
 </section>
@@ -23,45 +46,45 @@
   @use '../styles/foundations' as *;
 
   .hero {
-    padding-top: calc($section-padding + 64px);
+    padding-top: calc($section-padding + 68px);
+    background: linear-gradient(160deg, $color-bg 60%, $color-bg-alt 100%);
 
     &__inner {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 1.5rem;
-      max-width: 700px;
+      gap: 1.75rem;
+      max-width: 680px;
     }
 
     &__badge {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: 0.8rem;
-      font-weight: 500;
-      color: $color-accent-light;
-      background: rgba($color-accent, 0.1);
-      border: 1px solid rgba($color-accent, 0.25);
-      padding: 0.35rem 0.85rem;
-      border-radius: 100px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: $color-accent;
+      background: $color-accent-bg;
+      padding: 0.4rem 1rem;
+      border-radius: $radius-pill;
+      width: fit-content;
+    }
 
-      &::before {
-        content: '';
-        width: 7px;
-        height: 7px;
-        border-radius: 50%;
-        background: $color-accent-light;
-        animation: pulse 2s infinite;
-      }
+    &__badge-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: $color-accent;
+      animation: pulse 2s infinite;
     }
 
     &__title {
-      font-size: clamp(2.5rem, 6vw, 4rem);
-      line-height: 1.1;
+      font-size: clamp(2.4rem, 6vw, 3.8rem);
+      line-height: 1.12;
       color: $color-text;
+      letter-spacing: -0.02em;
 
       &--accent {
-        color: $color-accent-light;
+        color: $color-accent;
       }
     }
 
@@ -69,7 +92,6 @@
       font-size: 1.1rem;
       color: $color-text-muted;
       line-height: 1.75;
-      max-width: 540px;
     }
 
     &__actions {
@@ -77,10 +99,41 @@
       gap: 1rem;
       flex-wrap: wrap;
     }
+
+    &__social-proof {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      padding-top: 0.5rem;
+    }
+
+    &__sp-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.1rem;
+
+      strong {
+        font-size: 1rem;
+        font-weight: 700;
+        color: $color-text;
+      }
+
+      span {
+        font-size: 0.78rem;
+        color: $color-text-subtle;
+      }
+    }
+
+    &__sp-divider {
+      width: 1px;
+      height: 32px;
+      background: $color-border;
+    }
   }
 
   @keyframes pulse {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.4; }
+    50% { opacity: 0.35; }
   }
 </style>

@@ -5,31 +5,48 @@
   <div class="container">
     <div class="contact-box">
       <div class="contact-box__left">
-        <p class="section-label">Travaillons ensemble</p>
-        <h2 class="section-title">Un projet en tête ?</h2>
+        <p class="section-label">Parlons de votre projet</p>
+        <h2 class="section-title">Vous avez une idée ?<br />Je m'occupe du reste.</h2>
         <p class="section-desc">
-          Que ce soit pour un nouveau projet, une refonte, ou simplement pour échanger —
-          je suis disponible et réponds sous 24h.
+          Décrivez-moi votre activité et ce que vous attendez de votre site.
+          Je vous réponds sous 24h avec un premier retour gratuit.
         </p>
-        <a href="mailto:contact@romin.dev" class="btn btn--primary contact-box__btn">
-          Envoyer un email
-        </a>
+
+        <div class="contact-box__reassurance">
+          <div class="contact-reassurance-item">
+            <span>⚡</span>
+            <span>Réponse sous 24h</span>
+          </div>
+          <div class="contact-reassurance-item">
+            <span>🎁</span>
+            <span>Devis 100 % gratuit</span>
+          </div>
+          <div class="contact-reassurance-item">
+            <span>🤝</span>
+            <span>Sans engagement</span>
+          </div>
+        </div>
       </div>
 
       <form class="contact-form" name="contact" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="contact" />
         <div class="contact-form__group">
-          <label for="name">Nom</label>
-          <input type="text" id="name" name="name" placeholder="Votre nom" required />
+          <label for="name">Votre nom</label>
+          <input type="text" id="name" name="name" placeholder="Marie Dupont" required />
+        </div>
+        <div class="contact-form__group">
+          <label for="business">Votre activité</label>
+          <input type="text" id="business" name="business" placeholder="Ex : coiffeuse, restaurant, plombier…" required />
         </div>
         <div class="contact-form__group">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" placeholder="vous@exemple.fr" required />
         </div>
         <div class="contact-form__group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="4" placeholder="Décrivez votre projet..." required></textarea>
+          <label for="message">Votre projet en quelques mots</label>
+          <textarea id="message" name="message" rows="4" placeholder="Je n'ai pas encore de site, je voudrais quelque chose de simple pour présenter mes services…" required></textarea>
         </div>
-        <button type="submit" class="btn btn--primary">Envoyer</button>
+        <button type="submit" class="btn btn--coral">Envoyer ma demande →</button>
       </form>
     </div>
   </div>
@@ -41,10 +58,6 @@
   .contact-box {
     display: grid;
     gap: 4rem;
-    padding: 3rem;
-    background: $color-bg-card;
-    border: 1px solid $color-border;
-    border-radius: $radius-lg;
 
     @include respond-to('lg') {
       grid-template-columns: 1fr 1fr;
@@ -54,15 +67,31 @@
     &__left {
       display: flex;
       flex-direction: column;
-      gap: 1.25rem;
+      gap: 1.5rem;
     }
 
-    &__btn {
-      width: fit-content;
+    &__reassurance {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
     }
   }
 
+  .contact-reassurance-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.9rem;
+    color: $color-text-muted;
+
+    span:first-child { font-size: 1rem; }
+  }
+
   .contact-form {
+    background: $color-bg-card;
+    border-radius: $radius-lg;
+    padding: 2rem;
+    box-shadow: $shadow-md;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
@@ -74,24 +103,26 @@
 
       label {
         font-size: 0.85rem;
-        font-weight: 500;
-        color: $color-text-muted;
+        font-weight: 600;
+        color: $color-text;
       }
 
       input, textarea {
-        background: rgba($color-bg, 0.8);
-        border: 1px solid $color-border;
+        background: $color-bg;
+        border: 1.5px solid $color-border;
         border-radius: $radius-sm;
-        padding: 0.65rem 1rem;
+        padding: 0.7rem 1rem;
         color: $color-text;
         font-size: 0.95rem;
-        transition: border-color $transition;
+        transition: border-color $transition, box-shadow $transition;
         resize: vertical;
 
         &::placeholder { color: $color-text-subtle; }
+
         &:focus {
           outline: none;
           border-color: $color-accent;
+          box-shadow: 0 0 0 3px rgba($color-accent, 0.1);
         }
       }
     }

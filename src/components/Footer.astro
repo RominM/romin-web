@@ -4,12 +4,16 @@ const year = new Date().getFullYear()
 
 <footer class="footer">
   <div class="container footer__inner">
-    <span class="footer__logo">romin<span>.</span>dev</span>
-    <p class="footer__copy">© {year} — Développé avec Astro</p>
-    <div class="footer__links">
-      <a href="https://github.com/RominM" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+    <div class="footer__brand">
+      <span class="footer__logo">romin<span>.</span>dev</span>
+      <p class="footer__tagline">Sites web pour artisans & commerçants locaux</p>
     </div>
+    <div class="footer__links">
+      <a href="#services">Prestations</a>
+      <a href="#why">Pourquoi moi</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <p class="footer__copy">© {year} Romin — Développeur web freelance</p>
   </div>
 </footer>
 
@@ -18,25 +22,35 @@ const year = new Date().getFullYear()
 
   .footer {
     border-top: 1px solid $color-border;
-    padding-block: 2rem;
+    padding-block: 2.5rem;
+    background: $color-bg;
 
     &__inner {
-      @include flex-between;
-      flex-wrap: wrap;
-      gap: 1rem;
+      display: grid;
+      gap: 1.5rem;
+
+      @include respond-to('md') {
+        grid-template-columns: 1fr auto auto;
+        align-items: center;
+      }
+    }
+
+    &__brand {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
     }
 
     &__logo {
-      font-family: $font-mono;
-      font-size: 1rem;
-      font-weight: 500;
-      color: $color-text-muted;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: $color-text;
 
       span { color: $color-accent; }
     }
 
-    &__copy {
-      font-size: 0.85rem;
+    &__tagline {
+      font-size: 0.8rem;
       color: $color-text-subtle;
     }
 
@@ -46,7 +60,12 @@ const year = new Date().getFullYear()
       font-size: 0.85rem;
       color: $color-text-muted;
 
-      a:hover { color: $color-text; }
+      a:hover { color: $color-accent; }
+    }
+
+    &__copy {
+      font-size: 0.8rem;
+      color: $color-text-subtle;
     }
   }
 </style>

@@ -1,31 +1,52 @@
 ---
-const stack = [
-  { name: 'TypeScript', category: 'Langage' },
-  { name: 'Vue / Nuxt', category: 'Frontend' },
-  { name: 'React / Next', category: 'Frontend' },
-  { name: 'Astro', category: 'Frontend' },
-  { name: 'Node.js', category: 'Backend' },
-  { name: 'PostgreSQL', category: 'Base de données' },
-  { name: 'MongoDB', category: 'Base de données' },
-  { name: 'Docker', category: 'DevOps' },
-  { name: 'Git / GitHub', category: 'Outils' },
-  { name: 'Figma', category: 'Design' },
+const reasons = [
+  {
+    icon: '💬',
+    title: 'Zéro jargon',
+    desc: 'Je vous explique tout en clair, sans termes techniques. Vous savez à tout moment où en est votre projet.',
+  },
+  {
+    icon: '⚡',
+    title: 'Rapide à livrer',
+    desc: 'Votre site est en ligne en 2 à 4 semaines. Pas de longs mois d\'attente avant de commencer à être visible.',
+  },
+  {
+    icon: '💶',
+    title: 'Prix transparent',
+    desc: 'Devis gratuit, tarif fixé à l\'avance. Pas de mauvaise surprise sur la facture finale.',
+  },
+  {
+    icon: '🤝',
+    title: 'Un seul interlocuteur',
+    desc: 'C\'est moi qui fais le travail, du premier échange à la mise en ligne. Pas d\'intermédiaire, pas de délégation.',
+  },
+  {
+    icon: '📱',
+    title: 'Pensé mobile',
+    desc: 'Plus de 70 % de vos clients vous cherchent sur téléphone. Votre site sera parfait sur tous les écrans.',
+  },
+  {
+    icon: '🔒',
+    title: 'Vous restez propriétaire',
+    desc: 'Le site vous appartient. Je vous transmets tous les accès. Vous n\'êtes jamais pris en otage.',
+  },
 ]
 ---
 
-<section id="stack" class="section stack-section">
+<section id="why" class="section">
   <div class="container">
-    <p class="section-label">Mes outils</p>
-    <h2 class="section-title">Stack technique</h2>
+    <p class="section-label">Pourquoi moi</p>
+    <h2 class="section-title">Ce qui fait la différence</h2>
     <p class="section-desc">
-      Les technologies que j'utilise au quotidien pour livrer des projets solides et maintenables.
+      Pas une agence, pas un template automatique. Un développeur qui prend le temps de comprendre votre activité.
     </p>
 
-    <div class="stack-list">
-      {stack.map(item => (
-        <div class="stack-item">
-          <span class="stack-item__name">{item.name}</span>
-          <span class="stack-item__category">{item.category}</span>
+    <div class="why-grid">
+      {reasons.map(r => (
+        <div class="why-card">
+          <span class="why-card__icon">{r.icon}</span>
+          <h3 class="why-card__title">{r.title}</h3>
+          <p class="why-card__desc">{r.desc}</p>
         </div>
       ))}
     </div>
@@ -35,42 +56,49 @@ const stack = [
 <style lang="scss">
   @use '../styles/foundations' as *;
 
-  .stack-section {
-    border-top: 1px solid $color-border;
-    border-bottom: 1px solid $color-border;
-  }
-
-  .stack-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.75rem;
+  .why-grid {
+    display: grid;
+    gap: 1.25rem;
     margin-top: 3rem;
+
+    @include respond-to('md') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to('lg') {
+      grid-template-columns: repeat(3, 1fr);
+    }
   }
 
-  .stack-item {
+  .why-card {
     display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: $color-bg-card;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.5rem;
+    border-radius: $radius-md;
     border: 1px solid $color-border;
-    border-radius: $radius-sm;
-    padding: 0.5rem 1rem;
-    transition: border-color $transition;
+    transition: border-color $transition, box-shadow $transition;
 
     &:hover {
       border-color: rgba($color-accent, 0.4);
+      box-shadow: $shadow-sm;
     }
 
-    &__name {
-      font-size: 0.9rem;
-      font-weight: 500;
+    &__icon {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    &__title {
+      font-size: 1rem;
+      font-weight: 600;
       color: $color-text;
-      font-family: $font-mono;
     }
 
-    &__category {
-      font-size: 0.75rem;
-      color: $color-text-subtle;
+    &__desc {
+      font-size: 0.88rem;
+      color: $color-text-muted;
+      line-height: 1.65;
     }
   }
 </style>
