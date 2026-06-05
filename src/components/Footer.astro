@@ -23,7 +23,12 @@ const year = new Date().getFullYear()
   .footer {
     border-top: 1px solid $color-border;
     padding-block: 2.5rem;
+    padding-bottom: calc(2.5rem + 72px); // espace pour le sticky CTA mobile
     background: $color-bg;
+
+    @include respond-to('md') {
+      padding-bottom: 2.5rem;
+    }
 
     &__inner {
       display: grid;

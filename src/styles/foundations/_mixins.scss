@@ -26,7 +26,9 @@
   border: 1px solid rgba(255, 255, 255, 0.75);
   border-radius: $radius-md;
   box-shadow: 0 4px 24px rgba(120, 100, 180, 0.09);
-  padding: 2rem;
+  padding: 1.25rem;
+
+  @media (min-width: 768px) { padding: 2rem; }
 }
 
 @mixin respond-to($bp) {

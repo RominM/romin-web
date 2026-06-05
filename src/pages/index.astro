@@ -21,13 +21,19 @@ import Footer from '../components/Footer.astro'
   <Footer />
 </Layout>
 
+<!-- Sticky CTA mobile -->
+<div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+  <a href="#contact" class="btn btn--primary sticky-cta__btn">Demander un devis gratuit</a>
+</div>
+
 <script>
-  const observer = new IntersectionObserver(
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver(
     (entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible')
-          observer.unobserve(entry.target)
+          revealObserver.unobserve(entry.target)
         }
       })
     },
@@ -36,5 +42,51 @@ import Footer from '../components/Footer.astro'
 
   document
     .querySelectorAll('.reveal, .reveal-left, .reveal-right')
-    .forEach(el => observer.observe(el))
+    .forEach(el => revealObserver.observe(el))
+
+  // Sticky CTA — appears when hero CTA scrolls out of view
+  const heroCta  = document.getElementById('hero-cta')
+  const stickyCta = document.getElementById('sticky-cta')
+
+  if (heroCta && stickyCta) {
+    const ctaObserver = new IntersectionObserver(
+      ([entry]) => {
+        const visible = !entry.isIntersecting
+        stickyCta.classList.toggle('is-visible', visible)
+        stickyCta.setAttribute('aria-hidden', String(!visible))
+      },
+      { threshold: 0 }
+    )
+    ctaObserver.observe(heroCta)
+  }
 </script>
+
+<style lang="scss">
+  @use '../styles/foundations' as *;
+
+  .sticky-cta {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 90;
+    padding: 0.85rem 1.5rem;
+    background: rgba(253, 252, 251, 0.88);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border-top: 1px solid rgba(255, 255, 255, 0.6);
+    display: flex;
+    transform: translateY(110%);
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+
+    &.is-visible { transform: translateY(0); }
+
+    &__btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    // Hidden on desktop — header CTA is already visible
+    @include respond-to('md') { display: none; }
+  }
+</style>

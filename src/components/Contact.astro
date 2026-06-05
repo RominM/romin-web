@@ -57,11 +57,12 @@
 
   .contact-box {
     display: grid;
-    gap: 4rem;
+    gap: 2rem;
 
     @include respond-to('lg') {
       grid-template-columns: 1fr 1fr;
       align-items: start;
+      gap: 4rem;
     }
 
     &__left {
@@ -93,9 +94,11 @@
     -webkit-backdrop-filter: blur(18px) saturate(160%);
     border: 1px solid rgba(255, 255, 255, 0.75);
     border-radius: $radius-lg;
-    padding: 2rem;
+    padding: 1.25rem;
     box-shadow: 0 4px 24px rgba(120, 100, 180, 0.09);
     display: flex;
+
+    @include respond-to('md') { padding: 2rem; }
     flex-direction: column;
     gap: 1.25rem;
 
