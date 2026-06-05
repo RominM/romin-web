@@ -35,15 +35,17 @@ const reasons = [
 
 <section id="why" class="section">
   <div class="container">
-    <p class="section-label">Pourquoi moi</p>
-    <h2 class="section-title">Ce qui fait la différence</h2>
-    <p class="section-desc">
-      Pas une agence, pas un template automatique. Un développeur qui prend le temps de comprendre votre activité.
-    </p>
+    <div class="reveal">
+      <p class="section-label">Pourquoi moi</p>
+      <h2 class="section-title">Ce qui fait la différence</h2>
+      <p class="section-desc">
+        Pas une agence, pas un template automatique. Un développeur qui prend le temps de comprendre votre activité.
+      </p>
+    </div>
 
     <div class="why-grid">
-      {reasons.map(r => (
-        <div class="why-card">
+      {reasons.map((r, i) => (
+        <div class={`why-card reveal reveal-delay-${i + 1}`}>
           <span class="why-card__icon">{r.icon}</span>
           <h3 class="why-card__title">{r.title}</h3>
           <p class="why-card__desc">{r.desc}</p>
@@ -77,11 +79,18 @@ const reasons = [
     padding: 1.5rem;
     border-radius: $radius-md;
     border: 1px solid $color-border;
-    transition: border-color $transition, box-shadow $transition;
+    background: $color-bg-card;
+    transition:
+      border-color 0.25s ease,
+      box-shadow 0.25s ease,
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      translate 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 
     &:hover {
-      border-color: rgba($color-accent, 0.4);
-      box-shadow: $shadow-sm;
+      border-color: rgba($color-accent, 0.35);
+      box-shadow: $shadow-md;
+      transform: translateY(-3px);
     }
 
     &__icon {

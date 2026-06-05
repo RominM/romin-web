@@ -33,15 +33,17 @@ const services = [
 
 <section id="services" class="section services-section">
   <div class="container">
-    <p class="section-label">Ce que je propose</p>
-    <h2 class="section-title">Tout ce qu'il faut pour exister en ligne</h2>
-    <p class="section-desc">
-      Des prestations simples, pensées pour les indépendants et commerçants — sans jargon, sans mauvaise surprise.
-    </p>
+    <div class="reveal">
+      <p class="section-label">Ce que je propose</p>
+      <h2 class="section-title">Tout ce qu'il faut pour exister en ligne</h2>
+      <p class="section-desc">
+        Des prestations simples, pensées pour les indépendants et commerçants — sans jargon, sans mauvaise surprise.
+      </p>
+    </div>
 
     <div class="services-grid">
-      {services.map(s => (
-        <article class={`service-card service-card--${s.color}`}>
+      {services.map((s, i) => (
+        <article class={`service-card service-card--${s.color} reveal reveal-delay-${i + 1}`}>
           <span class="service-card__icon">{s.icon}</span>
           <h3 class="service-card__title">{s.title}</h3>
           <p class="service-card__desc">{s.desc}</p>
@@ -78,10 +80,14 @@ const services = [
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    transition: transform $transition, box-shadow $transition;
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.3s ease,
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      translate 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 
     &:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       box-shadow: $shadow-lg;
     }
 

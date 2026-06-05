@@ -29,15 +29,17 @@ const projects = [
 
 <section id="projects" class="section projects-section">
   <div class="container">
-    <p class="section-label">Réalisations</p>
-    <h2 class="section-title">Des sites qui ressemblent à leurs propriétaires</h2>
-    <p class="section-desc">
-      Chaque projet est unique, pensé pour le métier et les clients du commerçant.
-    </p>
+    <div class="reveal">
+      <p class="section-label">Réalisations</p>
+      <h2 class="section-title">Des sites qui ressemblent à leurs propriétaires</h2>
+      <p class="section-desc">
+        Chaque projet est unique, pensé pour le métier et les clients du commerçant.
+      </p>
+    </div>
 
     <div class="projects-grid">
-      {projects.map(p => (
-        <article class="project-card">
+      {projects.map((p, i) => (
+        <article class={`project-card reveal reveal-delay-${i + 1}`}>
           <div class="project-card__cover">
             <span class="project-card__emoji">{p.emoji}</span>
             <span class="project-card__type">{p.type}</span>
@@ -55,7 +57,7 @@ const projects = [
       ))}
     </div>
 
-    <p class="projects-note">
+    <p class="projects-note reveal reveal-delay-4">
       Ces exemples illustrent le type de projets que je réalise.
       <a href="#contact">Parlons du vôtre →</a>
     </p>
@@ -85,10 +87,14 @@ const projects = [
     border-radius: $radius-md;
     overflow: hidden;
     box-shadow: $shadow-md;
-    transition: transform $transition, box-shadow $transition;
+    transition:
+      transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 0.3s ease,
+      opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+      translate 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 
     &:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
       box-shadow: $shadow-lg;
     }
 
@@ -98,7 +104,6 @@ const projects = [
       @include flex-center;
       flex-direction: column;
       gap: 0.5rem;
-      position: relative;
     }
 
     &__emoji {

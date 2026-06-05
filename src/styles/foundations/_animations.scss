@@ -1,0 +1,76 @@
+// Scroll reveal
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-32px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(32px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+
+  &.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+// Stagger delays
+@for $i from 1 through 8 {
+  .reveal-delay-#{$i} { transition-delay: #{$i * 0.09}s; }
+}
+
+// Hero load animations
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+// Background blobs
+@keyframes blob {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  25%       { transform: translate(40px, -30px) scale(1.06) rotate(5deg); }
+  50%       { transform: translate(20px, 40px) scale(0.94) rotate(-3deg); }
+  75%       { transform: translate(-30px, 20px) scale(1.04) rotate(2deg); }
+}
+
+@keyframes blob-reverse {
+  0%, 100% { transform: translate(0, 0) scale(1) rotate(0deg); }
+  25%       { transform: translate(-40px, 30px) scale(0.96) rotate(-4deg); }
+  50%       { transform: translate(-20px, -40px) scale(1.07) rotate(3deg); }
+  75%       { transform: translate(30px, -20px) scale(0.97) rotate(-2deg); }
+}
+
+// Pulse dot
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.35; transform: scale(0.75); }
+}

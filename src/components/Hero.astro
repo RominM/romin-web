@@ -3,27 +3,27 @@
 
 <section class="hero section">
   <div class="container hero__inner">
-    <div class="hero__badge">
+    <div class="hero__badge hero-anim-1">
       <span class="hero__badge-dot"></span>
       Disponible pour de nouveaux projets
     </div>
 
-    <h1 class="hero__title">
+    <h1 class="hero__title hero-anim-2">
       Votre entreprise mérite<br />
       un site qui <span class="hero__title--accent">travaille pour vous</span>
     </h1>
 
-    <p class="hero__desc">
+    <p class="hero__desc hero-anim-3">
       Je crée des sites web sur-mesure pour les artisans, commerçants et indépendants locaux.
       Simple, rapide à mettre en ligne, et pensé pour ramener des clients.
     </p>
 
-    <div class="hero__actions">
+    <div class="hero__actions hero-anim-4">
       <a href="#contact" class="btn btn--primary">Demander un devis gratuit</a>
       <a href="#projects" class="btn btn--ghost">Voir des exemples</a>
     </div>
 
-    <div class="hero__social-proof">
+    <div class="hero__social-proof hero-anim-5">
       <div class="hero__sp-item">
         <strong>2–4 semaines</strong>
         <span>pour mettre en ligne</span>
@@ -48,6 +48,7 @@
   .hero {
     padding-top: calc($section-padding + 68px);
     background: linear-gradient(160deg, $color-bg 60%, $color-bg-alt 100%);
+    overflow: hidden;
 
     &__inner {
       display: flex;
@@ -74,7 +75,7 @@
       height: 7px;
       border-radius: 50%;
       background: $color-accent;
-      animation: pulse 2s infinite;
+      animation: pulse-dot 2s infinite;
     }
 
     &__title {
@@ -85,6 +86,10 @@
 
       &--accent {
         color: $color-accent;
+        background: linear-gradient(135deg, $color-accent 0%, #b39dfc 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
       }
     }
 
@@ -132,8 +137,10 @@
     }
   }
 
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.35; }
-  }
+  // Load animations for hero
+  .hero-anim-1 { animation: fade-up 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.1s both; }
+  .hero-anim-2 { animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.2s both; }
+  .hero-anim-3 { animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both; }
+  .hero-anim-4 { animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.48s both; }
+  .hero-anim-5 { animation: fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.6s both; }
 </style>

@@ -23,10 +23,63 @@ const {
     <title>{title}</title>
   </head>
   <body>
+    <div class="bg-orbs" aria-hidden="true">
+      <div class="bg-orb bg-orb--1"></div>
+      <div class="bg-orb bg-orb--2"></div>
+      <div class="bg-orb bg-orb--3"></div>
+    </div>
     <slot />
   </body>
 </html>
 
 <style lang="scss" is:global>
+  @use 'sass:color';
   @use '../styles/global.scss';
+  @use '../styles/foundations/variables' as *;
+
+  .bg-orbs {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+
+  .bg-orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+
+    &--1 {
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(123, 105, 248, 0.18), transparent 70%);
+      top: -200px;
+      right: -150px;
+      animation: blob 18s ease-in-out infinite;
+    }
+
+    &--2 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(248, 124, 109, 0.14), transparent 70%);
+      bottom: 10%;
+      left: -150px;
+      animation: blob-reverse 22s ease-in-out infinite;
+    }
+
+    &--3 {
+      width: 350px;
+      height: 350px;
+      background: radial-gradient(circle, rgba(183, 168, 252, 0.15), transparent 70%);
+      top: 50%;
+      right: 10%;
+      animation: blob 28s ease-in-out infinite reverse;
+    }
+  }
+
+  body > *:not(.bg-orbs) {
+    position: relative;
+    z-index: 1;
+  }
 </style>
