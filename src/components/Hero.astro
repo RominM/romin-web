@@ -1,0 +1,86 @@
+---
+---
+
+<section class="hero section">
+  <div class="container hero__inner">
+    <div class="hero__badge">Disponible pour de nouveaux projets</div>
+    <h1 class="hero__title">
+      Développeur web <br />
+      <span class="hero__title--accent">full-stack</span> freelance
+    </h1>
+    <p class="hero__desc">
+      Je transforme vos idées en applications web modernes, rapides et sur-mesure.
+      Du MVP au produit complet, je vous accompagne de A à Z.
+    </p>
+    <div class="hero__actions">
+      <a href="#contact" class="btn btn--primary">Démarrer un projet</a>
+      <a href="#projects" class="btn btn--ghost">Voir mes réalisations</a>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use '../styles/foundations' as *;
+
+  .hero {
+    padding-top: calc($section-padding + 64px);
+
+    &__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+      max-width: 700px;
+    }
+
+    &__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: $color-accent-light;
+      background: rgba($color-accent, 0.1);
+      border: 1px solid rgba($color-accent, 0.25);
+      padding: 0.35rem 0.85rem;
+      border-radius: 100px;
+
+      &::before {
+        content: '';
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: $color-accent-light;
+        animation: pulse 2s infinite;
+      }
+    }
+
+    &__title {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      line-height: 1.1;
+      color: $color-text;
+
+      &--accent {
+        color: $color-accent-light;
+      }
+    }
+
+    &__desc {
+      font-size: 1.1rem;
+      color: $color-text-muted;
+      line-height: 1.75;
+      max-width: 540px;
+    }
+
+    &__actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+</style>

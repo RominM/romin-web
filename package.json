@@ -1,30 +1,16 @@
 {
-  "name": "nuxt-app",
+  "name": "portfolio",
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
-    "dev": "nuxt dev",
-    "generate": "nuxt generate",
-    "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
   },
   "dependencies": {
-    "@hugeicons/core-free-icons": "^1.0.14",
-    "@hugeicons/vue": "^1.0.3",
-    "@pinia/nuxt": "^0.11.1",
-    "cookie": "^1.0.2",
-    "jsonwebtoken": "8",
-    "nuxt": "^4.0.0",
-    "pinia": "^3.0.3",
-    "pinia-plugin-persistedstate": "^4.4.1",
-    "pinia-plugin-persistedstate-2": "^2.0.30",
-    "vue": "^3.5.17",
-    "vue-router": "^4.5.1"
+    "astro": "^6.0.0"
   },
-  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610",
   "devDependencies": {
-    "@types/jsonwebtoken": "^9.0.10",
     "sass": "^1.89.2"
   }
 }

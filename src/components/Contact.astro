@@ -1,0 +1,99 @@
+---
+---
+
+<section id="contact" class="section">
+  <div class="container">
+    <div class="contact-box">
+      <div class="contact-box__left">
+        <p class="section-label">Travaillons ensemble</p>
+        <h2 class="section-title">Un projet en tête ?</h2>
+        <p class="section-desc">
+          Que ce soit pour un nouveau projet, une refonte, ou simplement pour échanger —
+          je suis disponible et réponds sous 24h.
+        </p>
+        <a href="mailto:contact@romin.dev" class="btn btn--primary contact-box__btn">
+          Envoyer un email
+        </a>
+      </div>
+
+      <form class="contact-form" name="contact" method="POST" data-netlify="true">
+        <div class="contact-form__group">
+          <label for="name">Nom</label>
+          <input type="text" id="name" name="name" placeholder="Votre nom" required />
+        </div>
+        <div class="contact-form__group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="vous@exemple.fr" required />
+        </div>
+        <div class="contact-form__group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Décrivez votre projet..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn--primary">Envoyer</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use '../styles/foundations' as *;
+
+  .contact-box {
+    display: grid;
+    gap: 4rem;
+    padding: 3rem;
+    background: $color-bg-card;
+    border: 1px solid $color-border;
+    border-radius: $radius-lg;
+
+    @include respond-to('lg') {
+      grid-template-columns: 1fr 1fr;
+      align-items: start;
+    }
+
+    &__left {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    &__btn {
+      width: fit-content;
+    }
+  }
+
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+
+    &__group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+
+      label {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: $color-text-muted;
+      }
+
+      input, textarea {
+        background: rgba($color-bg, 0.8);
+        border: 1px solid $color-border;
+        border-radius: $radius-sm;
+        padding: 0.65rem 1rem;
+        color: $color-text;
+        font-size: 0.95rem;
+        transition: border-color $transition;
+        resize: vertical;
+
+        &::placeholder { color: $color-text-subtle; }
+        &:focus {
+          outline: none;
+          border-color: $color-accent;
+        }
+      }
+    }
+  }
+</style>

@@ -1,0 +1,27 @@
+// Colors
+$color-bg: #0a0a0f;
+$color-bg-card: #13131a;
+$color-border: #1e1e2e;
+
+$color-accent: #6c63ff;
+$color-accent-light: #a29bfe;
+
+$color-text: #e2e8f0;
+$color-text-muted: #94a3b8;
+$color-text-subtle: #475569;
+
+// Typography
+$font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+$font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+// Spacing
+$section-padding: clamp(4rem, 10vw, 8rem);
+$container-max: 1100px;
+
+// Border radius
+$radius-sm: 8px;
+$radius-md: 16px;
+$radius-lg: 24px;
+
+// Transitions
+$transition: 0.2s ease;

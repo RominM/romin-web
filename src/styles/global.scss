@@ -1,0 +1,79 @@
+@use 'sass:color';
+@use 'reset';
+@use 'foundations/variables' as *;
+@use 'foundations/mixins' as *;
+
+body {
+  font-family: $font-sans;
+  background-color: $color-bg;
+  color: $color-text;
+}
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.container {
+  @include container;
+}
+
+.section {
+  padding-block: $section-padding;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: $color-accent-light;
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  color: $color-text;
+  margin-bottom: 1rem;
+}
+
+.section-desc {
+  font-size: 1.05rem;
+  color: $color-text-muted;
+  max-width: 520px;
+  line-height: 1.7;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: $radius-sm;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all $transition;
+  border: none;
+
+  &--primary {
+    background: $color-accent;
+    color: #fff;
+
+    &:hover {
+      background: color.adjust(#6c63ff, $lightness: -8%);
+      transform: translateY(-1px);
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $color-text;
+    border: 1px solid $color-border;
+
+    &:hover {
+      border-color: $color-accent-light;
+      color: $color-accent-light;
+    }
+  }
+}

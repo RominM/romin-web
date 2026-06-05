@@ -1,0 +1,92 @@
+---
+const services = [
+  {
+    icon: '⚡',
+    title: 'Application web',
+    desc: 'Développement d\'applications sur-mesure, de l\'interface jusqu\'à l\'API. Architecture pensée pour durer.',
+  },
+  {
+    icon: '🎨',
+    title: 'Site vitrine & landing page',
+    desc: 'Un site qui convertit : design soigné, performance optimale, SEO intégré dès le départ.',
+  },
+  {
+    icon: '🔌',
+    title: 'Intégration & API',
+    desc: 'Connexion à vos outils existants (CRM, paiement, auth, services tiers) de manière fiable et sécurisée.',
+  },
+  {
+    icon: '🚀',
+    title: 'Audit & optimisation',
+    desc: 'Performance, accessibilité, qualité du code — je diagnostique et améliore vos projets existants.',
+  },
+]
+---
+
+<section id="services" class="section">
+  <div class="container">
+    <p class="section-label">Ce que je fais</p>
+    <h2 class="section-title">Mes prestations</h2>
+    <p class="section-desc">
+      Des solutions adaptées à vos besoins, livrées dans les délais et sans mauvaises surprises.
+    </p>
+
+    <div class="services-grid">
+      {services.map(s => (
+        <article class="service-card">
+          <span class="service-card__icon">{s.icon}</span>
+          <h3 class="service-card__title">{s.title}</h3>
+          <p class="service-card__desc">{s.desc}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use '../styles/foundations' as *;
+
+  .services-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 3rem;
+
+    @include respond-to('md') {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include respond-to('lg') {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .service-card {
+    @include card;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: border-color $transition, transform $transition;
+
+    &:hover {
+      border-color: rgba($color-accent, 0.4);
+      transform: translateY(-3px);
+    }
+
+    &__icon {
+      font-size: 1.75rem;
+      line-height: 1;
+    }
+
+    &__title {
+      font-size: 1.05rem;
+      color: $color-text;
+    }
+
+    &__desc {
+      font-size: 0.9rem;
+      color: $color-text-muted;
+      line-height: 1.65;
+      flex: 1;
+    }
+  }
+</style>

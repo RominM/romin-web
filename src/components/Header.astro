@@ -1,0 +1,72 @@
+---
+const navLinks = [
+  { label: 'Services', href: '#services' },
+  { label: 'Stack', href: '#stack' },
+  { label: 'Projets', href: '#projects' },
+  { label: 'Contact', href: '#contact' },
+]
+---
+
+<header class="header">
+  <div class="container header__inner">
+    <a href="/" class="header__logo">romin<span>.</span>dev</a>
+    <nav class="header__nav">
+      {navLinks.map(link => (
+        <a href={link.href} class="header__link">{link.label}</a>
+      ))}
+    </nav>
+    <a href="#contact" class="btn btn--primary header__cta">Me contacter</a>
+  </div>
+</header>
+
+<style lang="scss">
+  @use '../styles/foundations' as *;
+
+  .header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 100;
+    backdrop-filter: blur(12px);
+    background: rgba($color-bg, 0.8);
+    border-bottom: 1px solid $color-border;
+
+    &__inner {
+      @include flex-between;
+      height: 64px;
+    }
+
+    &__logo {
+      font-family: $font-mono;
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: $color-text;
+
+      span { color: $color-accent; }
+    }
+
+    &__nav {
+      display: none;
+      gap: 2rem;
+
+      @include respond-to('md') {
+        display: flex;
+      }
+    }
+
+    &__link {
+      font-size: 0.9rem;
+      color: $color-text-muted;
+      transition: color $transition;
+
+      &:hover { color: $color-text; }
+    }
+
+    &__cta {
+      display: none;
+
+      @include respond-to('md') {
+        display: inline-flex;
+      }
+    }
+  }
+</style>

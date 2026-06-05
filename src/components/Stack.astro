@@ -1,0 +1,76 @@
+---
+const stack = [
+  { name: 'TypeScript', category: 'Langage' },
+  { name: 'Vue / Nuxt', category: 'Frontend' },
+  { name: 'React / Next', category: 'Frontend' },
+  { name: 'Astro', category: 'Frontend' },
+  { name: 'Node.js', category: 'Backend' },
+  { name: 'PostgreSQL', category: 'Base de données' },
+  { name: 'MongoDB', category: 'Base de données' },
+  { name: 'Docker', category: 'DevOps' },
+  { name: 'Git / GitHub', category: 'Outils' },
+  { name: 'Figma', category: 'Design' },
+]
+---
+
+<section id="stack" class="section stack-section">
+  <div class="container">
+    <p class="section-label">Mes outils</p>
+    <h2 class="section-title">Stack technique</h2>
+    <p class="section-desc">
+      Les technologies que j'utilise au quotidien pour livrer des projets solides et maintenables.
+    </p>
+
+    <div class="stack-list">
+      {stack.map(item => (
+        <div class="stack-item">
+          <span class="stack-item__name">{item.name}</span>
+          <span class="stack-item__category">{item.category}</span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use '../styles/foundations' as *;
+
+  .stack-section {
+    border-top: 1px solid $color-border;
+    border-bottom: 1px solid $color-border;
+  }
+
+  .stack-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 3rem;
+  }
+
+  .stack-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: $color-bg-card;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    padding: 0.5rem 1rem;
+    transition: border-color $transition;
+
+    &:hover {
+      border-color: rgba($color-accent, 0.4);
+    }
+
+    &__name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: $color-text;
+      font-family: $font-mono;
+    }
+
+    &__category {
+      font-size: 0.75rem;
+      color: $color-text-subtle;
+    }
+  }
+</style>

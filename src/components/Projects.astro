@@ -1,0 +1,123 @@
+---
+const projects = [
+  {
+    title: 'Projet 1',
+    desc: 'Description courte du projet, technos utilisées, résultat concret.',
+    tags: ['Vue', 'Node.js', 'PostgreSQL'],
+    link: '#',
+  },
+  {
+    title: 'Projet 2',
+    desc: 'Description courte du projet, technos utilisées, résultat concret.',
+    tags: ['Nuxt', 'TypeScript', 'MongoDB'],
+    link: '#',
+  },
+  {
+    title: 'Projet 3',
+    desc: 'Description courte du projet, technos utilisées, résultat concret.',
+    tags: ['React', 'Next.js', 'Supabase'],
+    link: '#',
+  },
+]
+---
+
+<section id="projects" class="section">
+  <div class="container">
+    <p class="section-label">Portfolio</p>
+    <h2 class="section-title">Réalisations</h2>
+    <p class="section-desc">
+      Quelques projets récents qui illustrent mon approche et mes compétences.
+    </p>
+
+    <div class="projects-grid">
+      {projects.map(p => (
+        <a href={p.link} class="project-card">
+          <div class="project-card__body">
+            <h3 class="project-card__title">{p.title}</h3>
+            <p class="project-card__desc">{p.desc}</p>
+          </div>
+          <footer class="project-card__footer">
+            <div class="project-card__tags">
+              {p.tags.map(tag => (
+                <span class="project-card__tag">{tag}</span>
+              ))}
+            </div>
+            <span class="project-card__arrow">→</span>
+          </footer>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style lang="scss">
+  @use '../styles/foundations' as *;
+
+  .projects-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 3rem;
+
+    @include respond-to('md') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  .project-card {
+    @include card;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    transition: border-color $transition, transform $transition;
+
+    &:hover {
+      border-color: rgba($color-accent, 0.4);
+      transform: translateY(-3px);
+
+      .project-card__arrow { transform: translateX(4px); }
+    }
+
+    &__body {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex: 1;
+    }
+
+    &__title {
+      font-size: 1.1rem;
+      color: $color-text;
+    }
+
+    &__desc {
+      font-size: 0.9rem;
+      color: $color-text-muted;
+      line-height: 1.6;
+    }
+
+    &__footer {
+      @include flex-between;
+    }
+
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    &__tag {
+      font-size: 0.72rem;
+      font-family: $font-mono;
+      color: $color-accent-light;
+      background: rgba($color-accent, 0.1);
+      padding: 0.2rem 0.55rem;
+      border-radius: 4px;
+    }
+
+    &__arrow {
+      color: $color-text-subtle;
+      transition: transform $transition;
+      font-size: 1.1rem;
+    }
+  }
+</style>

@@ -1,0 +1,52 @@
+---
+const year = new Date().getFullYear()
+---
+
+<footer class="footer">
+  <div class="container footer__inner">
+    <span class="footer__logo">romin<span>.</span>dev</span>
+    <p class="footer__copy">© {year} — Développé avec Astro</p>
+    <div class="footer__links">
+      <a href="https://github.com/RominM" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
+
+<style lang="scss">
+  @use '../styles/foundations' as *;
+
+  .footer {
+    border-top: 1px solid $color-border;
+    padding-block: 2rem;
+
+    &__inner {
+      @include flex-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    &__logo {
+      font-family: $font-mono;
+      font-size: 1rem;
+      font-weight: 500;
+      color: $color-text-muted;
+
+      span { color: $color-accent; }
+    }
+
+    &__copy {
+      font-size: 0.85rem;
+      color: $color-text-subtle;
+    }
+
+    &__links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      color: $color-text-muted;
+
+      a:hover { color: $color-text; }
+    }
+  }
+</style>
