@@ -66,27 +66,19 @@ import Footer from '../components/Footer.astro'
 
   .sticky-cta {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 1.5rem;
+    left: 50%;
     z-index: 90;
-    padding: 0.85rem 1.5rem;
-    background: rgba(253, 252, 251, 0.88);
-    backdrop-filter: blur(16px) saturate(160%);
-    -webkit-backdrop-filter: blur(16px) saturate(160%);
-    border-top: 1px solid rgba(255, 255, 255, 0.6);
-    display: flex;
-    transform: translateY(110%);
-    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    transform: translateX(-50%) translateY(calc(100% + 2rem));
+    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 
-    &.is-visible { transform: translateY(0); }
+    &.is-visible { transform: translateX(-50%) translateY(0); }
 
     &__btn {
-      width: 100%;
-      justify-content: center;
+      white-space: nowrap;
+      box-shadow: 0 8px 28px rgba(123, 105, 248, 0.45);
     }
 
-    // Hidden on desktop — header CTA is already visible
     @include respond-to('md') { display: none; }
   }
 </style>
