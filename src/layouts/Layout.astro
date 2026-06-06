@@ -48,9 +48,9 @@ const schema = {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://mgl-studio.fr" />
     <meta name="twitter:card" content="summary" />
-    <link rel="canonical" href="https://mgl-studio.fr" />
+    <meta property="og:url" content={new URL(Astro.url.pathname, site.url).href} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, site.url).href} />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
