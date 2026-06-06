@@ -3,42 +3,45 @@
 
 <section class="hero section">
   <div class="container hero__inner">
-    <div class="hero__badge hero-anim-1">
-      <span class="hero__badge-dot"></span>
-      Disponible pour de nouveaux projets
+
+    <div class="hero__left">
+      <div class="hero__badge hero-anim-1">
+        <span class="hero__badge-dot"></span>
+        Disponible pour de nouveaux projets
+      </div>
+      <h1 class="hero__title hero-anim-2">
+        Votre entreprise mérite<br />
+        un site qui <span class="hero__title--accent">travaille pour vous</span>
+      </h1>
+      <p class="hero__desc hero-anim-3">
+        Développeur web freelance basé à <strong>Puisserguier</strong>, je crée des sites sur-mesure pour les artisans,
+        commerçants et indépendants du Biterrois. Simple, rapide à mettre en ligne, et pensé pour ramener des clients.
+      </p>
     </div>
 
-    <h1 class="hero__title hero-anim-2">
-      Votre entreprise mérite<br />
-      un site qui <span class="hero__title--accent">travaille pour vous</span>
-    </h1>
-
-    <p class="hero__desc hero-anim-3">
-      Développeur web freelance basé à <strong>Puisserguier</strong>, je crée des sites sur-mesure pour les artisans,
-      commerçants et indépendants du Biterrois. Simple, rapide à mettre en ligne, et pensé pour ramener des clients.
-    </p>
-
-    <div class="hero__actions hero-anim-4" id="hero-cta">
-      <a href="#contact" class="btn btn--primary">Demander un devis gratuit</a>
-      <a href="#projects" class="btn btn--ghost">Voir des exemples</a>
-    </div>
-
-    <div class="hero__social-proof hero-anim-5">
-      <div class="hero__sp-item">
-        <strong>2–4 semaines</strong>
-        <span>pour mettre en ligne</span>
+    <div class="hero__right">
+      <div class="hero__actions hero-anim-4" id="hero-cta">
+        <a href="#contact" class="btn btn--primary">Demander un devis gratuit</a>
+        <a href="#projects" class="btn btn--ghost">Voir des exemples</a>
       </div>
-      <div class="hero__sp-divider"></div>
-      <div class="hero__sp-item">
-        <strong>100 %</strong>
-        <span>sur-mesure</span>
-      </div>
-      <div class="hero__sp-divider"></div>
-      <div class="hero__sp-item">
-        <strong>Devis</strong>
-        <span>gratuit & sans engagement</span>
+      <div class="hero__social-proof hero-anim-5">
+        <div class="hero__sp-item">
+          <strong>2–4 semaines</strong>
+          <span>pour mettre en ligne</span>
+        </div>
+        <div class="hero__sp-divider"></div>
+        <div class="hero__sp-item">
+          <strong>100 %</strong>
+          <span>sur-mesure</span>
+        </div>
+        <div class="hero__sp-divider"></div>
+        <div class="hero__sp-item">
+          <strong>Devis</strong>
+          <span>gratuit & sans engagement</span>
+        </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -53,8 +56,33 @@
     &__inner {
       display: flex;
       flex-direction: column;
+      gap: 3rem;
+
+      @include respond-to('lg') {
+        flex-direction: row;
+        align-items: center;
+        gap: 5rem;
+      }
+    }
+
+    &__left {
+      display: flex;
+      flex-direction: column;
       gap: 1.75rem;
-      max-width: 680px;
+
+      @include respond-to('lg') {
+        flex: 1 1 55%;
+      }
+    }
+
+    &__right {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+
+      @include respond-to('lg') {
+        flex: 1 1 45%;
+      }
     }
 
     &__badge {
