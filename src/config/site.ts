@@ -1,8 +1,8 @@
 export const site = {
   name: 'Romin',
   fullName: 'Romin — Développeur web freelance',
-  url: 'https://romin.dev',
-  title: 'Développeur web | Romin — Sites vitrines pour artisans & commerçants',
+  url: 'https://mgl-studio.fr',
+  title: 'Développeur web | MGL Studio — Sites vitrines pour artisans & commerçants',
   description:
     'Développeur web freelance à Puisserguier. Je crée des sites vitrines sur-mesure pour les artisans, commerçants et indépendants du Biterrois. Devis gratuit, livraison en 2 à 4 semaines.',
 
