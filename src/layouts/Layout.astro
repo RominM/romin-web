@@ -5,9 +5,31 @@ interface Props {
 }
 
 const {
-  title = 'Romin — Création de sites web pour artisans & commerçants',
-  description = 'Je crée des sites web sur-mesure pour les artisans, commerçants et indépendants locaux. Devis gratuit, livraison en 2 à 4 semaines.'
+  title = 'Développeur web à Béziers | Romin — Sites vitrines pour artisans & commerçants',
+  description = 'Développeur web freelance à Béziers. Je crée des sites vitrines sur-mesure pour les artisans, commerçants et indépendants du Biterrois. Devis gratuit, livraison en 2 à 4 semaines.'
 } = Astro.props
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Romin — Développeur web freelance",
+  "description": "Création de sites vitrines sur-mesure pour artisans, commerçants et indépendants à Béziers et dans le Biterrois.",
+  "url": "https://romin.dev",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Béziers",
+    "addressRegion": "Hérault",
+    "postalCode": "34500",
+    "addressCountry": "FR"
+  },
+  "areaServed": [
+    { "@type": "City", "name": "Béziers" },
+    { "@type": "AdministrativeArea", "name": "Hérault" },
+    { "@type": "AdministrativeArea", "name": "Occitanie" }
+  ],
+  "priceRange": "€€",
+  "knowsLanguage": "fr"
+}
 ---
 
 <!doctype html>
@@ -21,6 +43,7 @@ const {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <title>{title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>
   <body>
     <!-- Spots de couleur animés — z-index 0, fixed, clippé -->
