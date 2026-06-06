@@ -52,6 +52,7 @@ export async function handler(event) {
     await resend.emails.send({
       from: 'Formulaire contact <onboarding@resend.dev>',
       to: notifEmail,
+      replyTo: email, // ← répondre directement au client (Gmail auto-reply inclus)
       subject: `📩 Nouvelle demande — ${name} (${business})`,
       html: `
         <div style="font-family:Inter,sans-serif;max-width:560px;margin:0 auto;color:#1c1729;">
