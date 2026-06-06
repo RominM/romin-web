@@ -5,7 +5,7 @@ export async function handler(event) {
     return { statusCode: 405, body: 'Method Not Allowed' }
   }
 
-  const apiKey    = process.env.RESEND_API_KEY
+  const apiKey = process.env.RESEND_API_KEY
   const notifEmail = process.env.NOTIFICATION_EMAIL
 
   if (!apiKey) {
@@ -15,16 +15,16 @@ export async function handler(event) {
 
   const resend = new Resend(apiKey) // instancié ici, après injection des env vars
 
-  const params   = new URLSearchParams(event.body)
-  const name     = params.get('name')     || ''
-  const email    = params.get('email')    || ''
+  const params = new URLSearchParams(event.body)
+  const name = params.get('name') || ''
+  const email = params.get('email') || ''
   const business = params.get('business') || ''
-  const message  = params.get('message')  || ''
+  const message = params.get('message') || ''
 
   try {
     // 1. Réponse automatique au client
     await resend.emails.send({
-      from: 'Romin <onboarding@resend.dev>',
+      from: 'Romin <hello@mgl-studio.fr>',
       to: email,
       subject: 'Votre demande a bien été reçue ✓',
       html: `
@@ -45,12 +45,12 @@ export async function handler(event) {
             <span style="color:#a89ab8;font-size:0.9rem;">Développeur web freelance</span>
           </p>
         </div>
-      `,
+      `
     })
 
     // 2. Notification à Romin
     await resend.emails.send({
-      from: 'Formulaire contact <onboarding@resend.dev>',
+      from: 'Formulaire contact <hello@mgl-studio.fr>',
       to: notifEmail,
       replyTo: email, // ← répondre directement au client (Gmail auto-reply inclus)
       subject: `📩 Nouvelle demande — ${name} (${business})`,
@@ -72,7 +72,7 @@ export async function handler(event) {
             </a>
           </p>
         </div>
-      `,
+      `
     })
   } catch (err) {
     console.error('Resend error:', err)
@@ -81,6 +81,6 @@ export async function handler(event) {
   return {
     statusCode: 302,
     headers: { Location: '/merci' },
-    body: '',
+    body: ''
   }
 }
