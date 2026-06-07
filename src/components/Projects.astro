@@ -3,10 +3,10 @@ const projects = [
   {
     emoji: '✂️',
     type: 'Salon de coiffure',
-    title: 'Atelier Fauve',
-    desc: 'Site vitrine avec prise de rendez-vous en ligne, galerie photos et présentation des prestations.',
-    tags: ['Site vitrine', 'Réservation', 'Mobile-first'],
-    link: '#',
+    title: 'Sandrine Morel Coiffure',
+    desc: 'Site vitrine pour un salon de coiffure indépendant : présentation des prestations, tarifs et contact direct.',
+    tags: ['Site vitrine', 'Mobile-first', 'SEO local'],
+    link: 'https://sandrine-morel-coiffure.netlify.app/',
   },
   {
     emoji: '🍕',
@@ -52,6 +52,11 @@ const projects = [
                 <span class="project-card__tag">{tag}</span>
               ))}
             </div>
+            {p.link !== '#' && (
+              <a href={p.link} target="_blank" rel="noopener noreferrer" class="project-card__link">
+                Voir le site →
+              </a>
+            )}
           </div>
         </article>
       ))}
@@ -152,6 +157,19 @@ const projects = [
       padding: 0.2rem 0.6rem;
       border-radius: $radius-pill;
       font-weight: 500;
+    }
+  }
+
+  .project-card {
+    &__link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: $color-accent;
+      text-decoration: none;
+      transition: opacity $transition;
+      align-self: flex-start;
+
+      &:hover { opacity: 0.7; }
     }
   }
 
