@@ -14,7 +14,7 @@ const year = new Date().getFullYear()
       <a href="#why">Pourquoi moi</a>
       <a href="#contact">Contact</a>
     </div>
-    <p class="footer__copy">© {year} Romin — Développeur web freelance à Béziers</p>
+    <p class="footer__copy">© {year} Romin — <a href="/mentions-legales">Mentions légales</a></p>
   </div>
 </footer>
 
@@ -78,6 +78,11 @@ const year = new Date().getFullYear()
     &__copy {
       font-size: 0.8rem;
       color: $color-text-subtle;
+
+      a {
+        color: $color-text-subtle;
+        &:hover { color: $color-accent; }
+      }
     }
   }
 </style>

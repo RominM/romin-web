@@ -1,0 +1,87 @@
+---
+import Layout from '../layouts/Layout.astro'
+import Header from '../components/Header.astro'
+import Footer from '../components/Footer.astro'
+---
+
+<Layout
+  title="Mentions légales — MGL Studio"
+  description="Mentions légales du site mgl-studio.fr"
+>
+  <Header />
+  <main class="legal">
+    <div class="container legal__inner">
+      <h1 class="legal__title">Mentions légales</h1>
+
+      <section class="legal__section">
+        <h2>Éditeur du site</h2>
+        <p>Romin Manogil<br />
+        Développeur web freelance<br />
+        Puisserguier (34620), France<br />
+        Email : <a href="mailto:hello@mgl-studio.fr">hello@mgl-studio.fr</a></p>
+      </section>
+
+      <section class="legal__section">
+        <h2>Hébergement</h2>
+        <p>Netlify, Inc.<br />
+        44 Montgomery Street, Suite 300<br />
+        San Francisco, CA 94104, États-Unis<br />
+        <a href="https://www.netlify.com" target="_blank" rel="noopener noreferrer">www.netlify.com</a></p>
+      </section>
+
+      <section class="legal__section">
+        <h2>Propriété intellectuelle</h2>
+        <p>L'ensemble du contenu de ce site (textes, images, design) est la propriété exclusive de Romin Manogil. Toute reproduction sans autorisation est interdite.</p>
+      </section>
+
+      <section class="legal__section">
+        <h2>Données personnelles</h2>
+        <p>Les informations transmises via le formulaire de contact sont utilisées uniquement pour répondre à votre demande. Elles ne sont ni cédées ni vendues à des tiers. Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression en écrivant à <a href="mailto:hello@mgl-studio.fr">hello@mgl-studio.fr</a>.</p>
+      </section>
+    </div>
+  </main>
+  <Footer />
+</Layout>
+
+<style lang="scss">
+  @use '../styles/foundations' as *;
+
+  .legal {
+    min-height: 100dvh;
+    padding-top: 60px;
+
+    &__inner {
+      max-width: 680px;
+      margin-inline: auto;
+      padding-block: $section-padding;
+    }
+
+    &__title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      color: $color-text;
+      margin-bottom: 3rem;
+    }
+
+    &__section {
+      margin-bottom: 2.5rem;
+
+      h2 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: $color-text;
+        margin-bottom: 0.75rem;
+      }
+
+      p {
+        font-size: 0.95rem;
+        color: $color-text-muted;
+        line-height: 1.75;
+      }
+
+      a {
+        color: $color-accent;
+        &:hover { opacity: 0.75; }
+      }
+    }
+  }
+</style>
