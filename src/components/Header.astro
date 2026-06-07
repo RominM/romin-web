@@ -1,9 +1,9 @@
 ---
 const navLinks = [
-  { label: 'Prestations', href: '#services' },
-  { label: 'Pourquoi moi', href: '#why' },
-  { label: 'Réalisations', href: '#projects' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'Prestations', href: '/#services' },
+  { label: 'Pourquoi moi', href: '/#why' },
+  { label: 'Réalisations', href: '/#projects' },
+  { label: 'Contact', href: '/#contact' },
 ]
 ---
 
@@ -17,7 +17,7 @@ const navLinks = [
       ))}
     </nav>
 
-    <a href="#contact" class="btn btn--primary header__cta">Devis gratuit</a>
+    <a href="/#contact" class="btn btn--primary header__cta">Devis gratuit</a>
 
     <button class="header__burger" id="burger" aria-label="Ouvrir le menu" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -30,7 +30,7 @@ const navLinks = [
         <a href={link.href} class="header__mobile-link">{link.label}</a>
       ))}
     </nav>
-    <a href="#contact" class="btn btn--primary header__mobile-cta">Demander un devis gratuit</a>
+    <a href="/#contact" class="btn btn--primary header__mobile-cta">Demander un devis gratuit</a>
   </div>
 </header>
 
