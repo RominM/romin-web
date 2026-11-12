@@ -1,4 +1,7 @@
 ---
+// Clé publique Cloudflare Turnstile (variable d'env Netlify, lue au build).
+// Si elle est absente, le widget n'est simplement pas affiché.
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY
 ---
 
 <section id="contact" class="section">
@@ -46,11 +49,51 @@
           <label for="message">Votre projet en quelques mots</label>
           <textarea id="message" name="message" rows="4" placeholder="Je n'ai pas encore de site, je voudrais quelque chose de simple pour présenter mes services…" required></textarea>
         </div>
+
+        <!-- Anti-spam : champ piège, invisible pour les humains. Un bot le remplit. -->
+        <div class="contact-form__hp" aria-hidden="true">
+          <label for="website">Ne pas remplir ce champ</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+        <!-- Anti-spam : heure d'ouverture du formulaire, remplie par le script ci-dessous -->
+        <input type="hidden" name="ts" value="" />
+
+        {turnstileSiteKey && (
+          <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-language="fr" data-theme="light"></div>
+        )}
+
+        <p class="contact-form__error" role="alert" hidden>
+          Vérification anti-robot en cours, merci de réessayer dans un instant.
+        </p>
+
         <button type="submit" class="btn btn--coral">Envoyer ma demande →</button>
       </form>
     </div>
   </div>
 </section>
+
+{turnstileSiteKey && (
+  <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+)}
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('form.contact-form')
+  if (form) {
+    const ts = form.querySelector<HTMLInputElement>('input[name="ts"]')
+    if (ts) ts.value = String(Date.now())
+
+    const error = form.querySelector<HTMLElement>('.contact-form__error')
+    form.addEventListener('submit', (e) => {
+      // Si Turnstile est actif, on attend que la vérification soit terminée
+      if (!form.querySelector('.cf-turnstile')) return
+      const token = form.querySelector<HTMLInputElement>('input[name="cf-turnstile-response"]')
+      if (!token || !token.value) {
+        e.preventDefault()
+        if (error) error.hidden = false
+      }
+    })
+  }
+</script>
 
 <style lang="scss">
   @use '../styles/foundations' as *;
@@ -101,6 +144,20 @@
     @include respond-to('md') { padding: 2rem; }
     flex-direction: column;
     gap: 1.25rem;
+
+    // Champ piège : hors écran plutôt que display:none (que certains bots détectent)
+    &__hp {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+
+    &__error {
+      font-size: 0.85rem;
+      color: $color-text-muted;
+    }
 
     &__group {
       display: flex;

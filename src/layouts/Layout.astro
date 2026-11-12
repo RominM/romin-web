@@ -57,6 +57,15 @@ const schema = {
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <title>{title}</title>
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    {import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN && (
+      <!-- Cloudflare Web Analytics : sans cookie, pas de bandeau de consentement nécessaire -->
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN })}
+      ></script>
+    )}
   </head>
   <body>
     <!-- Spots de couleur animés — z-index 0, fixed, clippé -->
