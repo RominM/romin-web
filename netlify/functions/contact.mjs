@@ -1,7 +1,7 @@
 import { Resend } from 'resend'
 
 const MIN_FILL_TIME_MS = 3000 // un humain met plus de 3 s à remplir le formulaire
-const MAX_LENGTHS = { name: 100, email: 200, business: 150, message: 5000 }
+const MAX_LENGTHS = { name: 100, email: 200, phone: 30, business: 150, message: 5000 }
 const EMAIL_RE = /^[^\s@<>"']+@[^\s@<>"']+\.[^\s@<>"']+$/
 
 // Redirection utilisée aussi pour les envois rejetés : un bot ne doit pas savoir qu'il a été filtré.
@@ -71,6 +71,7 @@ export async function handler(event) {
   const email = get('email')
   const business = get('business')
   const message = get('message')
+  const phone = get('phone') // facultatif
 
   // 4. Champs obligatoires, longueurs et format d'email
   const tooLong = Object.entries(MAX_LENGTHS).some(([k, max]) => get(k).length > max)
@@ -93,8 +94,14 @@ export async function handler(event) {
     name: escapeHtml(name),
     email: escapeHtml(email),
     business: escapeHtml(business),
-    message: escapeHtml(message).replace(/\r?\n/g, '<br/>')
+    message: escapeHtml(message).replace(/\r?\n/g, '<br/>'),
+    phone: escapeHtml(phone),
+    phoneHref: phone.replace(/[^0-9+]/g, '') // pour le lien « tel: » cliquable
   }
+
+  const phoneRow = phone
+    ? `<tr><td style="padding:0.5rem 0;color:#6b5f7a;">Téléphone</td><td><a href="tel:${safe.phoneHref}"><strong>${safe.phone}</strong></a></td></tr>`
+    : `<tr><td style="padding:0.5rem 0;color:#6b5f7a;">Téléphone</td><td style="color:#a89ab8;">Non renseigné</td></tr>`
 
   try {
     // Réponse automatique au client (seulement si tous les contrôles sont passés)
@@ -135,6 +142,7 @@ export async function handler(event) {
           <table style="width:100%;border-collapse:collapse;margin-top:1rem;">
             <tr><td style="padding:0.5rem 0;color:#6b5f7a;width:120px;">Nom</td><td><strong>${safe.name}</strong></td></tr>
             <tr><td style="padding:0.5rem 0;color:#6b5f7a;">Email</td><td><a href="mailto:${safe.email}">${safe.email}</a></td></tr>
+            ${phoneRow}
             <tr><td style="padding:0.5rem 0;color:#6b5f7a;">Activité</td><td><strong>${safe.business}</strong></td></tr>
           </table>
           <div style="margin-top:1.5rem;padding:1rem;background:#f7f4ff;border-radius:8px;line-height:1.7;">

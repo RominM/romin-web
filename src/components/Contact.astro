@@ -46,6 +46,19 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY
           <input type="email" id="email" name="email" placeholder="vous@exemple.fr" required />
         </div>
         <div class="contact-form__group">
+          <label for="phone">Téléphone <span class="contact-form__optional">(facultatif)</span></label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="06 12 34 56 78"
+            autocomplete="tel"
+            maxlength="30"
+            pattern={String.raw`[0-9+\(\)\.\s\-]{6,30}`}
+            title="Chiffres, espaces et + uniquement"
+          />
+        </div>
+        <div class="contact-form__group">
           <label for="message">Votre projet en quelques mots</label>
           <textarea id="message" name="message" rows="4" placeholder="Je n'ai pas encore de site, je voudrais quelque chose de simple pour présenter mes services…" required></textarea>
         </div>
@@ -67,6 +80,12 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY
         </p>
 
         <button type="submit" class="btn btn--coral">Envoyer ma demande →</button>
+
+        <p class="contact-form__notice">
+          En envoyant ce formulaire, vous acceptez d'être recontacté par email ou par téléphone
+          au sujet de votre demande. Vos données ne sont jamais revendues.
+          <a href="/mentions-legales">En savoir plus</a>
+        </p>
       </form>
     </div>
   </div>
@@ -152,6 +171,23 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY
       width: 1px;
       height: 1px;
       overflow: hidden;
+    }
+
+    &__optional {
+      font-weight: 400;
+      color: $color-text-subtle;
+    }
+
+    &__notice {
+      font-size: 0.78rem;
+      line-height: 1.5;
+      color: $color-text-subtle;
+      text-align: center;
+
+      a {
+        color: inherit;
+        text-decoration: underline;
+      }
     }
 
     &__error {
